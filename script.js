@@ -1,4 +1,4 @@
-function displayBoard(row, column, marker) {
+function displayBoard() {
     const rows = 3;
     const columns = 3;
     const board = [];
@@ -6,18 +6,13 @@ function displayBoard(row, column, marker) {
     for(let i = 0; i < rows; i++) {
         board[i] = [];
         for(let j = 0; j < columns; j++) {
-            board[i].push(makeCell());
+            board[i].push(0);
         }
     }
-    board[row][column] = marker;
 
     return board;
 }
 
-function makeCell() {
-    let value = 0;
-    return value;
-}
 
 
 const players = [
@@ -43,7 +38,9 @@ function playRound() {
     const row = parseInt(prompt("Choose row"));
     const column = parseInt(prompt("Choose column"));
 
-    const board = displayBoard(row, column, marker);
+    const board = displayBoard();
+
+    board[row][column] = marker;
 
     activePlayer = switchPlayers(activePlayer);
     marker = activePlayer.marker;
@@ -51,5 +48,6 @@ function playRound() {
     console.log(board);
 }
 
-playRound();
-playRound();
+//each round resets the board
+playRound()
+playRound()
