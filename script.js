@@ -9,13 +9,16 @@ function gameBoard() {
             board[i].push(makeCell());
         }
     }
+    
+    const row = parseInt(prompt("Choose row"));
+    const column = parseInt(prompt("Choose column"));
 
-    board[0][2] = "fruit";
+    board[row][column] = "marked";
 
     return board;
 }
 
-function makeCell() {
+function makeCell(location) {
     let value = 0;
     return value;
 }
@@ -30,3 +33,7 @@ const playerOne = createPlayers("Alpha", "O");
 const playerTwo = createPlayers("Beta", "X");
 
 console.log(gameBoard());
+
+function selectCell(location) {
+
+} 
