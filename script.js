@@ -35,19 +35,21 @@ function switchPlayers(activePlayer) {
 function playRound() {
     let activePlayer = players[0];
     let marker = activePlayer.marker;
-    const row = parseInt(prompt("Choose row"));
-    const column = parseInt(prompt("Choose column"));
-
     const board = displayBoard();
+    let i = 0;
 
-    board[row][column] = marker;
+    while(i < 3/* There is no winner of the game and there are still blank pieces left */) {
+        const row = parseInt(prompt("Choose row"));
+        const column = parseInt(prompt("Choose column"));
+        board[row][column] = marker;
+        activePlayer = switchPlayers(activePlayer);
+        marker = activePlayer.marker;
+        i++;
+    }
 
-    activePlayer = switchPlayers(activePlayer);
-    marker = activePlayer.marker;
+
 
     console.log(board);
 }
 
-//each round resets the board
-playRound()
 playRound()
