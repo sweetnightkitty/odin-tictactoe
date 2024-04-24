@@ -13,17 +13,15 @@ function displayBoard() {
     return board;
 }
 
-
-
 const players = [
     {
         name: "Alpha",
-        marker: "alpha",
+        marker: 1,
     },
 
     {
         name: "Beta",
-        marker: "beta",
+        marker: 2,
     }
 ]
 
@@ -38,13 +36,25 @@ function playRound() {
     const board = displayBoard();
     let i = 0;
 
-    while(i < 5 /* To prevent infinite loop until condition to end game is coded */) {
-        const row = parseInt(prompt("Choose row"));
-        const column = parseInt(prompt("Choose column"));
+    while( i < 3/* To prevent infinite loop until condition to end game is coded */) {
+        let row = parseInt(prompt("Choose row"));
+        let column = parseInt(prompt("Choose column"));
+        
+        if(board[row][column] !=0) {
+            row = parseInt(prompt("That spot is taken, choose a different row"));
+            column = parseInt(prompt("Choose column")); 
+        }
+
         board[row][column] = marker;
         activePlayer = switchPlayers(activePlayer);
         marker = activePlayer.marker;
         i++;
+    }
+
+    //Needs updating
+    function checkGameOver(board) {
+        const spaceTaken = (currentValue) => currentValue > 0;
+        return board.every(spaceTaken) ? true : false;
     }
 
 
