@@ -6,25 +6,27 @@ function gameBoard() {
     for(let i = 0; i < rows; i++) {
         board[i] = [];
         for(let j = 0; j < columns; j++) {
-            board[i].push(getCell());
+            board[i].push(makeCell());
         }
     }
 
-    const playerOne = createPlayer("Alpha", "O");
-    const playerTwo = createPlayer("Beta", "X");
+    board[0][2] = "fruit";
 
-    return {board, playerOne, playerTwo};
+    return board;
 }
 
-function getCell() {
+function makeCell() {
     let value = 0;
     return value;
 }
 
-function createPlayer(name, marker) {
+function createPlayers(name, marker) {
     this.name = name;
     this.marker = marker;
     return {name, marker};
 }
+
+const playerOne = createPlayers("Alpha", "O");
+const playerTwo = createPlayers("Beta", "X");
 
 console.log(gameBoard());
