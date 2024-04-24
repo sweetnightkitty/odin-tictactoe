@@ -10,7 +10,6 @@ function gameBoard() {
         }
     }
     
-    markCell(board);
     return board;
 }
 
@@ -23,12 +22,12 @@ function makeCell() {
 const players = [
     {
         name: "Alpha",
-        marker: "O",
+        marker: "alpha",
     },
 
     {
         name: "Beta",
-        marker: "X",
+        marker: "beta",
     }
 ]
 
@@ -39,9 +38,25 @@ function markCell(board) {
     const row = parseInt(prompt("Choose row"));
     const column = parseInt(prompt("Choose column"));
 
-    board[row][column] = "O";
+    board[row][column] = "tree";
 }
 
-function switchPlayers() {
-    activePlayer === playerOne ? playerTwo : playerOne;
+function switchPlayers(activePlayer) {
+    return activePlayer === players[0] ? players[1] : players[0];
 }
+
+function playRound() {
+    let activePlayer = players[0];
+    let marker = activePlayer.marker;
+    const row = parseInt(prompt("Choose row"));
+    const column = parseInt(prompt("Choose column"));
+    console.log(marker);
+    // board[row][column] = "hi";
+
+    activePlayer = switchPlayers(activePlayer);
+    marker = activePlayer.marker;
+    console.log(activePlayer);
+    console.log(marker);
+}
+
+playRound();
