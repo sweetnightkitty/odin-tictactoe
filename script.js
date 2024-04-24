@@ -10,10 +10,21 @@ function gameBoard() {
         }
     }
 
-    return board;
+    const playerOne = createPlayer("Alpha", "O");
+    const playerTwo = createPlayer("Beta", "X");
+
+    return {board, playerOne, playerTwo};
 }
 
 function getCell() {
     let value = 0;
     return value;
 }
+
+function createPlayer(name, marker) {
+    this.name = name;
+    this.marker = marker;
+    return {name, marker};
+}
+
+console.log(gameBoard());
