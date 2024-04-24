@@ -1,4 +1,4 @@
-function gameBoard() {
+function displayBoard(row, column, marker) {
     const rows = 3;
     const columns = 3;
     const board = [];
@@ -9,7 +9,8 @@ function gameBoard() {
             board[i].push(makeCell());
         }
     }
-    
+    board[row][column] = marker;
+
     return board;
 }
 
@@ -31,15 +32,6 @@ const players = [
     }
 ]
 
-console.log(gameBoard());
-
-
-function markCell(board) {
-    const row = parseInt(prompt("Choose row"));
-    const column = parseInt(prompt("Choose column"));
-
-    board[row][column] = "tree";
-}
 
 function switchPlayers(activePlayer) {
     return activePlayer === players[0] ? players[1] : players[0];
@@ -50,13 +42,14 @@ function playRound() {
     let marker = activePlayer.marker;
     const row = parseInt(prompt("Choose row"));
     const column = parseInt(prompt("Choose column"));
-    console.log(marker);
-    // board[row][column] = "hi";
+
+    const board = displayBoard(row, column, marker);
 
     activePlayer = switchPlayers(activePlayer);
     marker = activePlayer.marker;
-    console.log(activePlayer);
-    console.log(marker);
+
+    console.log(board);
 }
 
+playRound();
 playRound();
