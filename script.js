@@ -10,15 +10,11 @@ function gameBoard() {
         }
     }
     
-    const row = parseInt(prompt("Choose row"));
-    const column = parseInt(prompt("Choose column"));
-
-    board[row][column] = "marked";
-
+    markCell(board);
     return board;
 }
 
-function makeCell(location) {
+function makeCell() {
     let value = 0;
     return value;
 }
@@ -34,6 +30,10 @@ const playerTwo = createPlayers("Beta", "X");
 
 console.log(gameBoard());
 
-function selectCell(location) {
 
-} 
+function markCell(board) {
+    const row = parseInt(prompt("Choose row"));
+    const column = parseInt(prompt("Choose column"));
+
+    board[row][column] = "marked";
+}
