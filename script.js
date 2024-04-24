@@ -19,14 +19,18 @@ function makeCell() {
     return value;
 }
 
-function createPlayers(name, marker) {
-    this.name = name;
-    this.marker = marker;
-    return {name, marker};
-}
 
-const playerOne = createPlayers("Alpha", "O");
-const playerTwo = createPlayers("Beta", "X");
+const players = [
+    {
+        name: "Alpha",
+        marker: "O",
+    },
+
+    {
+        name: "Beta",
+        marker: "X",
+    }
+]
 
 console.log(gameBoard());
 
@@ -35,5 +39,9 @@ function markCell(board) {
     const row = parseInt(prompt("Choose row"));
     const column = parseInt(prompt("Choose column"));
 
-    board[row][column] = "marked";
+    board[row][column] = "O";
+}
+
+function switchPlayers() {
+    activePlayer === playerOne ? playerTwo : playerOne;
 }
