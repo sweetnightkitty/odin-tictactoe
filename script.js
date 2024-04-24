@@ -38,7 +38,7 @@ function playRound() {
     const board = displayBoard();
     let i = 0;
 
-    while(i < 3/* There is no winner of the game and there are still blank pieces left */) {
+    while(i < 5 /* To prevent infinite loop until condition to end game is coded */) {
         const row = parseInt(prompt("Choose row"));
         const column = parseInt(prompt("Choose column"));
         board[row][column] = marker;
@@ -46,7 +46,6 @@ function playRound() {
         marker = activePlayer.marker;
         i++;
     }
-
 
 
     console.log(board);
