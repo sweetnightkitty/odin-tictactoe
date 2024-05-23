@@ -11,15 +11,19 @@ function displayBoard() {
     }
     
     const getBoard = () => board;
-    return { getBoard };
+    const updateBoard = (row, column, marker) => {
+        board[row][column] = marker
+    };
+    //const updateBoard, Something needs to print the board with updates.
+    return { 
+        getBoard,
+        updateBoard
+    };
 }
 
 
-function switchPlayers(activePlayer) {
-    return activePlayer === players[0] ? players[1] : players[0];
-}
 
-function playRound() {
+function gameController() {
     const players = [
         {
             name: "Alpha",
@@ -33,38 +37,32 @@ function playRound() {
     ]
 
     let activePlayer = players[0];
-    let marker = activePlayer.marker;
-    const board = displayBoard().getBoard();
 
-    const switchPlayers = (activePlayer) => {
-        return activePlayer === players[0] ? players[1] : players[0];
+    const board = () => displayBoard().getBoard();
+
+    const switchPlayers = () => {
+        activePlayer = activePlayer === players[0] ? players[1] : players[0];
     }
 
-    let i = 0;
-
-    while( i < 3/* To prevent infinite loop until condition to end game is coded */) {
+    const playRound = () => {
         let row = parseInt(prompt("Choose row"));
         let column = parseInt(prompt("Choose column"));
-        
-        if(board[row][column] !=0) {
+        if(board()[row][column] !=0) {
             row = parseInt(prompt("That spot is taken, choose a different row"));
             column = parseInt(prompt("Choose column")); 
         }
 
-        board[row][column] = marker;
-        activePlayer = switchPlayers(activePlayer);
-        marker = activePlayer.marker;
-        i++;
+        board()[row][column] = activePlayer.marker;
+        switchPlayers();
+        console.log(board());
     }
 
-    //Needs updating
-    function checkGameOver(board) {
-        const spaceTaken = (currentValue) => currentValue > 0;
-        return board.every(spaceTaken) ? true : false;
-    }
+    console.log(board());
+    return playRound();
 
 
-    console.log(board);
 }
 
-playRound()
+const game = gameController();
+
+
