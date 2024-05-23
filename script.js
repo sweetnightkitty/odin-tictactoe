@@ -9,8 +9,10 @@ function displayBoard() {
             board[i].push(0);
         }
     }
-
-    return board;
+    
+    //Will change return to return an object including getBoard; will need to update any other references to displayBoard()
+    const getBoard = () => board;
+    return { getBoard };
 }
 
 const players = [
@@ -33,7 +35,7 @@ function switchPlayers(activePlayer) {
 function playRound() {
     let activePlayer = players[0];
     let marker = activePlayer.marker;
-    const board = displayBoard();
+    const board = displayBoard().getBoard();
     let i = 0;
 
     while( i < 3/* To prevent infinite loop until condition to end game is coded */) {
