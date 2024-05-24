@@ -42,10 +42,10 @@ function gameController() {
         let row = parseInt(prompt("Choose row"));
         let column = parseInt(prompt("Choose column"));
         
-        if(board[row][column] !=0) {
-            row = parseInt(prompt("That spot is taken, choose a different row"));
+        while (board[row][column] !=0) {
+            row = parseInt(prompt("That spot is taken, try again! Choose row"));
             column = parseInt(prompt("Choose column")); 
-        }
+        };
 
         board[row][column] = activePlayer.marker;
         switchPlayers();
