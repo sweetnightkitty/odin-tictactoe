@@ -39,8 +39,8 @@ function gameController() {
     }
 
     const playRound = () => {
-        let row = parseInt(prompt("Choose row"));
-        let column = parseInt(prompt("Choose column"));
+        let row = parseInt(prompt(activePlayer.name + "'s turn! Choose row"));
+        let column = parseInt(prompt(activePlayer.name + " choose column"));
         
         while (board[row][column] !=0) {
             row = parseInt(prompt("That spot is taken, try again! Choose row"));
