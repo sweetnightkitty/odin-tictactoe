@@ -10,16 +10,9 @@ function displayBoard() {
         }
     }
     
-    const getBoard = () => board;
-    const updateBoard = (row, column, marker) => {
-        board[row][column] = marker
+    return board
     };
-    //const updateBoard, Something needs to print the board with updates.
-    return { 
-        getBoard,
-        updateBoard
-    };
-}
+
 
 
 
@@ -38,8 +31,9 @@ function gameController() {
 
     let activePlayer = players[0];
 
-    const board = () => displayBoard().getBoard();
-
+    const board = displayBoard();
+    console.log(board);
+ 
     const switchPlayers = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
     }
@@ -47,22 +41,27 @@ function gameController() {
     const playRound = () => {
         let row = parseInt(prompt("Choose row"));
         let column = parseInt(prompt("Choose column"));
-        if(board()[row][column] !=0) {
+        
+        if(board[row][column] !=0) {
             row = parseInt(prompt("That spot is taken, choose a different row"));
             column = parseInt(prompt("Choose column")); 
         }
 
-        board()[row][column] = activePlayer.marker;
+        board[row][column] = activePlayer.marker;
         switchPlayers();
-        console.log(board());
+        console.log(board);
     }
 
-    console.log(board());
-    return playRound();
+
+    return {
+        playRound,
+    }
 
 
 }
 
 const game = gameController();
+
+
 
 
