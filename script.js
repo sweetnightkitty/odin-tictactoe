@@ -48,6 +48,10 @@ function gameController() {
         };
 
         board[row][column] = activePlayer.marker;
+
+        //This is where the logic to check for a winner will go
+
+
         switchPlayers();
         console.log(board);
     }
