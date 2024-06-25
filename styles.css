@@ -34,8 +34,3 @@ footer {
     display: flex;
     justify-content: center;
 }
-
-/* temporary border for visualization */
-header, .body, footer {
-    border: 1px solid pink;
-}
