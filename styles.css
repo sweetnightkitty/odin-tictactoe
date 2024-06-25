@@ -24,10 +24,14 @@ header {
 .game-board {
     display: grid;
     grid-template-columns: repeat(3, 60px);
+    grid-template-rows: repeat(3, 60px);
 }
 
 .card {
     border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 footer {
