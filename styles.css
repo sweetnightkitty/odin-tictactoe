@@ -1,3 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+.game {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .game-board {
     display: grid;
     grid-template-columns: repeat(3, 60px);
@@ -5,4 +28,14 @@
 
 .card {
     border: 1px solid black;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+/* temporary border for visualization */
+header, .body, footer {
+    border: 1px solid pink;
 }
