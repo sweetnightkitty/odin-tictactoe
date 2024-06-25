@@ -50,8 +50,38 @@ function gameController() {
         board[row][column] = activePlayer.marker;
 
         //This is where the logic to check for a winner will go
+        const isGameOver = () => {
+            // check upper row
+            if (board[0][1] == board[0][0] && board[0][1] == board[0][2] && board[0][1] != 0) {
+                return board[0][1]
+                }
+                // check lower row
+                if (board[2][1] == board[2][0] && board[2][1] == board[2][2] && board[2][1] != 0) {
+                return board[2][1]
+                }
+                // check left column
+                if (board[1][0] == board[0][0] && board[1][0] == board[2][0] && board[1][0] != 0) {
+                return board[1][0]
+                }
+                // check right column
+                if (board[1][2] == board[0][2] && board[1][2] == board[2][2] && board[1][2] != 0) {
+                return board[1][2]
+                }
+                // check center row, column, and diagonals
+                if (
+                board[1][1] != 0 &&
+                ((board[1][1] == board[1][0] && board[1][1] == board[1][2]) ||
+                    (board[1][1] == board[0][1] && board[1][1] == board[2][1]) ||
+                    (board[1][1] == board[0][0] && board[1][1] == board[2][2]) ||
+                    (board[1][1] == board[2][0] && board[1][1] == board[0][2]))
+                ) {
+                return board[1][1]
+                }
+            
+                return 0
+        };
 
-
+        console.log(isGameOver());
         switchPlayers();
         console.log(board);
     }
@@ -65,7 +95,3 @@ function gameController() {
 }
 
 const game = gameController();
-
-
-
-
