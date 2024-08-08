@@ -97,3 +97,13 @@ function gameController() {
 
 
 const game = gameController();
+
+
+// Addition of UI//
+const cards = document.querySelectorAll(".card");
+cards.forEach((card) => {
+    card.addEventListener("click", () => {
+        game.playRound();
+    })
+})
+
