@@ -42,9 +42,25 @@ function gameController() {
 
     const getActivePlayer = () => activePlayer;
 
-    const playRound = () => {
-        let row = parseInt(prompt(activePlayer.name + "'s turn! Choose row"));
-        let column = parseInt(prompt(activePlayer.name + " choose column"));
+    const playRound = (selectedButton) => {
+        let row;
+        let column;
+
+        if(selectedButton < 4) {
+            row = 0;
+        } else if(selectedButton > 3 && selectedButton < 7) {
+            row = 1;
+        } else if(selectedButton > 6) {
+            row = 2;
+        }
+
+        if(selectedButton === 1 || selectedButton === 4 || selectedButton === 7) {
+            column = 0;
+        } else if(selectedButton === 2 || selectedButton === 5 || selectedButton === 8) {
+            column = 1;
+        } else if(selectedButton === 3 || selectedButton === 6 || selectedButton === 9) {
+            column = 2;
+        }
         
         while (board[row][column] !=0) {
             row = parseInt(prompt("That spot is taken, try again! Choose row"));
@@ -160,9 +176,11 @@ function screenController() {
         //ensures you don't click the gap
         if(!selectedButton) return;
 
+        console.log(selectedButton);
         game.playRound(selectedButton);
         updateScreen();
     }
+
     boardDiv.addEventListener("click", clickBoard);
 
     //initial render
