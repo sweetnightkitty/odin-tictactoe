@@ -146,12 +146,9 @@ function screenController() {
                 cellButton.classList.add("cell");
 
                 //dataset will identify each specific button
-                /*
                 cellId+= 1;
                 cellButton.dataset.number = cellId;
-                cellButton.textContent = cell.dataset.number;
-                */
-                cellButton.textContent = "tree";
+                cellButton.textContent = cellId;
                 boardDiv.appendChild(cellButton);
             })
         })
