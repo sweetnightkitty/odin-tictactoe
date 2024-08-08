@@ -47,6 +47,10 @@ h1 {
     display: none; /* JS will set to grid */
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
+    height: 450px;
+    width: 450px;
+    border: 1px dashed;
+    
 }
 
 .card {
