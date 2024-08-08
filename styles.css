@@ -57,6 +57,9 @@ h1 {
     font-size: 40px;
 }
 
+.btn-reset {
+    display: none; /*Js will set to block */
+}
 footer {
     display: flex;
     justify-content: center;

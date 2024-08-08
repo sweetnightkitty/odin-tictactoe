@@ -110,5 +110,8 @@ cards.forEach((card) => {
 const start = document.querySelector(".btn-start");
 start.addEventListener("click", () => {
     const gameBoard = document.querySelector(".game-board");
+    const reset = document.querySelector(".btn-reset");
     gameBoard.style.display = "grid";
+    start.style.display = "none";
+    reset.style.display = "block";
 })
