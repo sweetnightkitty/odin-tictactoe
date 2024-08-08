@@ -161,8 +161,11 @@ function screenController() {
         if(!selectedButton) return;
 
         game.playRound(selectedButton);
+        updateScreen();
     }
+    boardDiv.addEventListener("click", clickBoard);
 
+    //initial render
     updateScreen();
 };
 
