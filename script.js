@@ -107,3 +107,8 @@ cards.forEach((card) => {
     })
 })
 
+const start = document.querySelector(".btn-start");
+start.addEventListener("click", () => {
+    const gameBoard = document.querySelector(".game-board");
+    gameBoard.style.display = "grid";
+})

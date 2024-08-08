@@ -44,7 +44,7 @@ h1 {
 }
 
 .game-board {
-    display: grid;
+    display: none; /* JS will set to grid */
     grid-template-columns: repeat(3, 150px);
     grid-template-rows: repeat(3, 150px);
 }
