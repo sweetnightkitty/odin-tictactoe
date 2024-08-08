@@ -49,39 +49,60 @@ function gameController() {
 
         board[row][column] = activePlayer.marker;
 
-        //This is where the logic to check for a winner will go
+        //Checks for a winner but cannot discern between a draw or unfinished game
         const isGameOver = () => {
             // check upper row
             if (board[0][1] == board[0][0] && board[0][1] == board[0][2] && board[0][1] != 0) {
                 return board[0][1]
-                }
-                // check lower row
-                if (board[2][1] == board[2][0] && board[2][1] == board[2][2] && board[2][1] != 0) {
+            }
+            // check lower row
+            if (board[2][1] == board[2][0] && board[2][1] == board[2][2] && board[2][1] != 0) {
                 return board[2][1]
-                }
-                // check left column
-                if (board[1][0] == board[0][0] && board[1][0] == board[2][0] && board[1][0] != 0) {
+            }
+            // check left column
+            if (board[1][0] == board[0][0] && board[1][0] == board[2][0] && board[1][0] != 0) {
                 return board[1][0]
-                }
-                // check right column
-                if (board[1][2] == board[0][2] && board[1][2] == board[2][2] && board[1][2] != 0) {
+            }
+            // check right column
+            if (board[1][2] == board[0][2] && board[1][2] == board[2][2] && board[1][2] != 0) {
                 return board[1][2]
+            }
+            // check center row, column, and diagonals
+            if (
+            board[1][1] != 0 &&
+            ((board[1][1] == board[1][0] && board[1][1] == board[1][2]) ||
+                (board[1][1] == board[0][1] && board[1][1] == board[2][1]) ||
+                (board[1][1] == board[0][0] && board[1][1] == board[2][2]) ||
+                (board[1][1] == board[2][0] && board[1][1] == board[0][2]))
+            ) {
+            return board[1][1]
+            }
+
+            // check for draw
+            let tempArray = [];
+            for(let i = 0; i < 3; i++) {
+                for(let j = 0; j < 3; j++) {
+                    if (board[i][j] != 0) {
+                        tempArray.push(1);
+                    } 
                 }
-                // check center row, column, and diagonals
-                if (
-                board[1][1] != 0 &&
-                ((board[1][1] == board[1][0] && board[1][1] == board[1][2]) ||
-                    (board[1][1] == board[0][1] && board[1][1] == board[2][1]) ||
-                    (board[1][1] == board[0][0] && board[1][1] == board[2][2]) ||
-                    (board[1][1] == board[2][0] && board[1][1] == board[0][2]))
-                ) {
-                return board[1][1]
-                }
-            
-                return 0
+            }
+            if (tempArray.length === 9) {
+                return 3;
+            }
+        
+            return 0
         };
 
-        console.log(isGameOver());
+        //announces winner or draw
+        if(isGameOver() === 1) {
+            alert("Alpha wins!")
+        } else if(isGameOver() === 2) {
+            alert("Beta wins!");
+        } else if(isGameOver() === 3) {
+            alert("It's a draw!");
+        }
+
         switchPlayers();
         console.log(board);
     }
