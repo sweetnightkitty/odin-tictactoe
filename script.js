@@ -32,11 +32,15 @@ function gameController() {
     let activePlayer = players[0];
 
     const board = displayBoard();
+
+    //Not needed after UI added
     console.log(board);
  
     const switchPlayers = () => {
         activePlayer = activePlayer === players[0] ? players[1] : players[0];
     }
+
+    const getActivePlayer = () => activePlayer;
 
     const playRound = () => {
         let row = parseInt(prompt(activePlayer.name + "'s turn! Choose row"));
@@ -104,34 +108,75 @@ function gameController() {
         }
 
         switchPlayers();
+
+        //Logs updated board
         console.log(board);
     }
 
 
     return {
         playRound,
+        getActivePlayer,
+        getBoard: board
     }
 
 
 }
 
+function screenController() {
+    const game = gameController();
+    const playerTurnDiv = document.querySelector(".turn");
+    const boardDiv = document.querySelector(".game-board")
+
+    const updateScreen = () => {
+        //clear the board
+        boardDiv.textContent = "";
+
+        //new version of board
+        const board = game.getBoard;
+        const activePlayer = game.getActivePlayer();
+
+        //Display player's turn
+        playerTurnDiv.textContent = `${activePlayer.name}'s turn!`;
+
+        let cellId = 0;
+        board.forEach(row => {
+            row.forEach(cell => {
+                const cellButton = document.createElement("button");
+                cellButton.classList.add("cell");
+
+                //dataset will identify each specific button
+                /*
+                cellId+= 1;
+                cellButton.dataset.number = cellId;
+                cellButton.textContent = cell.dataset.number;
+                */
+                cellButton.textContent = "tree";
+                boardDiv.appendChild(cellButton);
+            })
+        })
+    };
+
+    function clickBoard(e) {
+        const selectedButton = e.target.dataset.number;
+
+        //ensures you don't click the gap
+        if(!selectedButton) return;
+
+        game.playRound(selectedButton);
+    }
+
+    updateScreen();
+};
 
 
-const game = gameController();
-
-
-// Addition of UI//
-const cards = document.querySelectorAll(".card");
-cards.forEach((card) => {
-    card.addEventListener("click", () => {
-        game.playRound();
-    })
-})
 
 const start = document.querySelector(".btn-start");
+const reset = document.querySelector(".btn-reset");
+
+//toggles start or reset game buttons
 start.addEventListener("click", () => {
     const gameBoard = document.querySelector(".game-board");
-    const reset = document.querySelector(".btn-reset");
     gameBoard.style.display = "grid";
     start.style.display = "none";
     reset.style.display = "block";
