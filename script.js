@@ -163,7 +163,6 @@ function screenController() {
                 //dataset will identify each specific button
                 cellId+= 1;
                 cellButton.dataset.number = cellId;
-                // cellButton.textContent = cellId;
                 boardDiv.appendChild(cellButton);
             })
         })
@@ -171,12 +170,28 @@ function screenController() {
 
     function clickBoard(e) {
         const selectedButton = e.target.dataset.number;
+        const activePlayer = game.getActivePlayer().marker;
+        const button = e.target;
+        console.log(button.textContent);
+
 
         //ensures you don't click the gap
         if(!selectedButton) return;
 
-
         game.playRound(selectedButton);
+
+        //player 1 is Alpha / player 2 is Beta
+        if(activePlayer == 1) {
+            button.textContent = "O";
+        } else if(activePlayer == 2) {
+            button.textContent = "X";
+        }
+
+        console.log(button.textContent);
+
+
+
+
         updateScreen();
     }
 
