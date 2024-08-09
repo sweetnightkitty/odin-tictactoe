@@ -53,6 +53,11 @@ h1 {
     
 }
 
+.cell {
+    background-color: var(--color-dark-theme-bgd);
+    border: 1px dashed white;
+}
+
 .btn-reset {
     display: none; /*Js will set to block */
 }
