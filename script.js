@@ -43,9 +43,10 @@ function gameController() {
     const getActivePlayer = () => activePlayer;
 
     const playRound = (selectedButton) => {
-        let row;
-        let column;
+       let row;
+       let column;
 
+       //assigns row based on the button clicked
         if(selectedButton < 4) {
             row = 0;
         } else if(selectedButton > 3 && selectedButton < 7) {
@@ -54,19 +55,16 @@ function gameController() {
             row = 2;
         }
 
-        if(selectedButton === 1 || selectedButton === 4 || selectedButton === 7) {
+        //asigns column value based on button clicked
+        if(selectedButton == 1 || selectedButton == 4 || selectedButton == 7) {
             column = 0;
-        } else if(selectedButton === 2 || selectedButton === 5 || selectedButton === 8) {
+        } else if(selectedButton == 2 || selectedButton == 5 || selectedButton == 8) {
             column = 1;
-        } else if(selectedButton === 3 || selectedButton === 6 || selectedButton === 9) {
+        } else if(selectedButton == 3 || selectedButton == 6 || selectedButton == 9) {
             column = 2;
         }
-        
-        while (board[row][column] !=0) {
-            row = parseInt(prompt("That spot is taken, try again! Choose row"));
-            column = parseInt(prompt("Choose column")); 
-        };
 
+        //updates value in 2d array to represent player selection
         board[row][column] = activePlayer.marker;
 
         //Checks for a winner but cannot discern between a draw or unfinished game
@@ -155,6 +153,7 @@ function screenController() {
         //Display player's turn
         playerTurnDiv.textContent = `${activePlayer.name}'s turn!`;
 
+        //Creates gameboard on screen
         let cellId = 0;
         board.forEach(row => {
             row.forEach(cell => {
@@ -164,7 +163,7 @@ function screenController() {
                 //dataset will identify each specific button
                 cellId+= 1;
                 cellButton.dataset.number = cellId;
-                cellButton.textContent = cellId;
+                // cellButton.textContent = cellId;
                 boardDiv.appendChild(cellButton);
             })
         })
@@ -176,7 +175,7 @@ function screenController() {
         //ensures you don't click the gap
         if(!selectedButton) return;
 
-        console.log(selectedButton);
+
         game.playRound(selectedButton);
         updateScreen();
     }
@@ -199,3 +198,5 @@ start.addEventListener("click", () => {
     start.style.display = "none";
     reset.style.display = "block";
 })
+
+screenController();
